@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-center mt-5">
+    <div class="card w-25">
+        <div class="card-header">
+            <h4 class="text-center">Venta del día</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 text-right">
+                    <span><strong>Motocicletas: </strong>{{resultado.motocicleta | currency }}</span>
+                </div>
+                <div class="col-12 text-right">
+                    <span><strong>Automóviles: </strong>{{resultado.automovil | currency }}</span>
+                </div>
+                <div class="col-12">
+                    <hr />
+                </div>
+                <div class="col-12 text-right">
+                    <span><strong>Total: </strong>{{resultado.total | currency }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

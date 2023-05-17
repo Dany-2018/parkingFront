@@ -1,0 +1,3 @@
+<app-registro (cerrado)="cerrar($event)" *ngIf="!cerrado"></app-registro>
+<app-lista-vehiculos *ngIf="!cerrado"></app-lista-vehiculos>
+<app-total-venta *ngIf="cerrado"></app-total-venta>

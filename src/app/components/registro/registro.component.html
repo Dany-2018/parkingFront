@@ -1,0 +1,33 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="row mx-4 mt-4">
+    <div class="col-3">
+      <label for="placaCarro" class="form-label">Placa</label>
+      <input type="text" class="form-control" title="Placa" formControlName="placa" />
+      <app-validador [control]="c['placa']"></app-validador>
+    </div>
+    <div class="col-3">
+      <label for="tipoVehiculo" class="form-label">Tipo de vehículo</label>
+      <select class="form-control" title="Tipo vehículo" formControlName="tipo">
+        <option value="Automovil">Automóvil</option>
+        <option value="Motocicleta">Motocicleta</option>
+      </select>
+      <app-validador [control]="c['tipo']"></app-validador>
+    </div>
+    <div class="col-3">
+      <label for="plazaAsignada" class="form-label">Plaza asignada</label>
+      <select class="form-control" title="Plaza" formControlName="plaza">
+        <option value=""></option>
+        <option [value]="(i + 1)" *ngFor="let numero of [].constructor(5); let i = index">Plaza {{i + 1}}</option>
+      </select>
+      <app-validador [control]="c['plaza']"></app-validador>
+    </div>
+    <div class="col-3 pt-2">
+      <label for="electrico" class="form-label mt-4 pt-1 mx-2">¿Es eléctrico?</label>
+      <input class="form-check-input px-3 py-3 mt-4" type="checkbox" formControlName="aplicaDescuento">
+    </div>
+    <div class="col-12 mt-3 text-right">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <button class="btn btn-secondary mx-1" (click)="cerrarParqueadero()">Cerrar parqueadero</button>
+    </div>
+  </div>
+</form>

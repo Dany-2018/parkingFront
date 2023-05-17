@@ -1,0 +1,5 @@
+<div class="row" *ngIf="control?.touched && control?.errors">
+    <div class="col-12" *ngIf="control!.errors!['required']">
+        <span class="text-danger">Este campo es requerido</span>
+    </div>
+</div>
