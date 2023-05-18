@@ -21,6 +21,7 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.seleccionaRegistro();
   }
 
   seleccionaRegistro() {
@@ -49,7 +50,8 @@ export class RegistroComponent implements OnInit {
     }
 
     this.vehiculoService.guardarRegistro(this.form.value as Registro).subscribe(r => {
-      this.vehiculoService.nuevoRegistro(r);
+      this.vehiculoService.nuevoRegistro();
+      this.initForm();
     });
   }
 

@@ -15,14 +15,37 @@
           <td>{{item.placa}}</td>
           <td>{{item.tipo}}</td>
           <td>{{(item.aplicaDescuento) ? 'Si' : 'No'}}</td>
-          <td>{{item.horaIngreso}}</td>
+          <td>{{item.horaIngreso|date:'dd/MM/YYYY HH:mm:ss'}}</td>
           <td>
-            <button class="btn btn-light fa fa-exit" (click)="darSalida(item)"></button>
+            <button class="btn btn-light fa fa-sign-out" (click)="darSalida(item)" title="Dar salida"></button>
             <button class="btn btn-light fa fa-edit" (click)="seleccionaRegistro(item)"></button>
             <button class="btn btn-danger fa fa-trash" (click)="eliminar(item)"></button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-salida">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Total a Pagar</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="row mx-4 mt-4">
+                  {{totalPagar.totalVehiculo | currency }}
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="aceptarSalida()">Pagar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarModal()">Close</button>
+          </div>
+      </div>
   </div>
 </div>

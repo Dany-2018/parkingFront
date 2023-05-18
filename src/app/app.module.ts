@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TotalVentaComponent } from './components/total-venta/total-venta.component';
+import { TotalPagarComponent } from './components/total-pagar/total-pagar.component';
+
 
 const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: env.mqtt.server,
@@ -25,7 +27,8 @@ const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     AppComponent,
     RegistroComponent,
     ListaVehiculosComponent,
-    TotalVentaComponent
+    TotalVentaComponent,
+    TotalPagarComponent
   ],
   imports: [
     CommonModule,

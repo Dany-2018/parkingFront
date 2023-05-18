@@ -30,4 +30,9 @@ export class BrokerService {
         let url = `${environment.http.apiUrl}/${controlador}${(metodo) ? `/${metodo}` : ''}`;
         return this.http.delete<T>(url, { headers: this.headers });
     }
+
+    patch<T>(controlador: string, metodo: string = ''): Observable<T> {
+        let url = `${environment.http.apiUrl}/${controlador}${(metodo) ? `/${metodo}` : ''}`;
+        return this.http.patch<T>(url, { headers: this.headers });
+    }
 }

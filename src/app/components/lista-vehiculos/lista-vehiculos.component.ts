@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Registro } from 'src/app/models/registro';
+import { TotalPagarResultado } from 'src/app/models/total-pagar-resultado';
 import { VehiculoMqttService } from 'src/app/services/vehiculo.mqtt.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { VehiculoMqttService } from 'src/app/services/vehiculo.mqtt.service';
 })
 export class ListaVehiculosComponent implements OnInit {
   vehiculos: Registro[] = [];
+  totalPagar: TotalPagarResultado = new TotalPagarResultado();
+  current: Registro = new Registro();
 
   constructor(private vehiculoService: VehiculoMqttService) {
 
@@ -16,15 +19,11 @@ export class ListaVehiculosComponent implements OnInit {
 
   ngOnInit(): void {
     this.esperarNuevoRegistro();
-    this.listarVehiculosActivos();
   }
 
   esperarNuevoRegistro() {
     this.vehiculoService.nuevoVehiculo.subscribe(r => {
-      if (!r) {
-        return;
-      }
-      this.vehiculos.push(r);
+      this.listarVehiculosActivos();
     });
   }
 
@@ -39,8 +38,18 @@ export class ListaVehiculosComponent implements OnInit {
   }
 
   darSalida(registro: Registro) {
-    this.vehiculoService.darSalida(registro.idVehiculo).subscribe(r => {
+    this.current = registro;
+    const modal = document.getElementById('modal-salida');
+    modal?.classList.add('show');
+    this.vehiculoService.totalPagar(registro.idVehiculo).subscribe(r => {
+      this.totalPagar = r;
+    });
+  }
+
+  aceptarSalida() {
+    this.vehiculoService.darSalida(this.current.idVehiculo).subscribe(r => {
       this.listarVehiculosActivos();
+      this.cerrarModal();
     });
   }
 
@@ -48,5 +57,10 @@ export class ListaVehiculosComponent implements OnInit {
     this.vehiculoService.eliminaRegistro(registro.idVehiculo).subscribe(r => { 
       this.listarVehiculosActivos();
     });
+  }
+
+  cerrarModal() {
+    const modal = document.getElementById('modal-salida');
+    modal?.classList.remove('show');
   }
 }
